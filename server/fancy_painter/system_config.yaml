@@ -1,0 +1,5 @@
+AccessKeyID: bb            # 腾讯云的访问key
+AccessKeySecret: aa  # 腾讯云的访问秘钥
+
+ServerIP: 9.134.70.164 # 服务IP
+ServerPort: 50051    # 服务端口

@@ -9,6 +9,8 @@ import (
 
 	"fancy_painter/proto/fancy_painter"
 
+	"fancy_painter/server/fancy_painter/config"
+
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"google.golang.org/grpc"
 )
@@ -45,8 +47,10 @@ func main() {
 	s := grpc.NewServer()
 	fancy_painter.RegisterFancyPainterServer(s, &FancyPainterService{})
 
+	config.InitSystemConfig() // 初始化服务配置
+
 	// 1. 启动grpc服务
-	lis, err := net.Listen("tcp", ":50051")
+	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", config.GetServerPort()))
 	if err != nil {
 		log.Fatalf("failed to listen:%v", err)
 	}
@@ -59,7 +63,8 @@ func main() {
 	}()
 
 	// 2. 启动http服务
-	conn, err := grpc.Dial("localhost:50051", grpc.WithInsecure())
+	ipport := fmt.Sprintf("%s:%d", config.GetServerIP(), config.GetServerPort())
+	conn, err := grpc.Dial(ipport, grpc.WithInsecure())
 	if err != nil {
 		log.Fatalln("failed to dial server:", err)
 	}
