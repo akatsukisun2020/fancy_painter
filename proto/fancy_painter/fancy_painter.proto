@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package xgrpcd;
+
+option go_package="fancy_painter/";
+
+import "google/api/annotations.proto"; // 支持http的时候，需要增加注解的功能，需要这个东西来进行解析
+
+message UserLoginReq {
+	string token = 1;        // 支持的token
+}
+
+message UserInfo {
+	string user_id = 1;        // 用户id
+	string phone_number = 2;   // 电话号码
+}
+
+message UserLoginRsp {
+	int32 ret_code = 1;
+	string ret_msg = 2;
+	string user_id = 3;        // 内部用户id
+}
+
+//请求
+message UserReq {
+	int32 id = 1;
+}
+
+//响应
+message UserRsp {
+	string name = 1;
+}
+
+//服务
+service FancyPainter {
+	// 测试接口
+	rpc GetUser(UserReq) returns (UserRsp){
+		option (google.api.http) = {        // 声明http的定义方式！！
+			get: "/fancy_painter/get_user"
+			// body: "*"                     // get方法的时候，不能有body字段
+		};
+	}
+
+	// 用户登录接口
+	rpc UserLogin(UserLoginReq) returns (UserLoginRsp){
+		option (google.api.http) = {        // 声明http的定义方式！！
+			post: "/fancy_painter/user_login"
+			body: "*"                     // 要传递数据过来，只能使用post方法！！
+		};
+	}
+}
+
+
+

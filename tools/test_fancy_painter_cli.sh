@@ -1,0 +1,1 @@
+curl -X POST -k http://localhost:8080/fancy_painter/user_login -d '{"phone_number": "15008427071","token": "XaAZZEA"}'
