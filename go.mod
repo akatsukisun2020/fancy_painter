@@ -9,7 +9,9 @@ require (
 	github.com/alibabacloud-go/tea-utils v1.4.5
 	github.com/alibabacloud-go/tea-xml v1.1.2 // indirect
 	github.com/clbanning/mxj/v2 v2.5.6 // indirect
+	github.com/go-sql-driver/mysql v1.6.0
 	github.com/gomodule/redigo/redis v0.0.1
+	github.com/google/uuid v1.1.2
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.10.3
 	google.golang.org/api v0.30.0
 	google.golang.org/genproto v0.0.0-20220519153652-3a47de7e79bd

@@ -7,12 +7,20 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+type FancyPainterDBConfig struct {
+	Dsn          string `yaml:"Dsn"`
+	MaxIdleConns int    `yaml:"MaxIdleConns"`
+	MaxOpenConns int    `yaml:"MaxOpenConns"`
+	MaxLifetime  int    `yaml:"MaxLifetime"` // 单位秒
+}
+
 // SystemConfig 系统配置
 type SystemConfig struct {
-	AccessKeyID     string `yaml:"AccessKeyID"`
-	AccessKeySecret string `yaml:"AccessKeySecret"`
-	ServerIP        string `yaml:"ServerIP"`
-	ServerPort      int32  `yaml:"ServerPort"`
+	AccessKeyID          string               `yaml:"AccessKeyID"`
+	AccessKeySecret      string               `yaml:"AccessKeySecret"`
+	ServerIP             string               `yaml:"ServerIP"`
+	ServerPort           int32                `yaml:"ServerPort"`
+	FancyPainterDBConfig FancyPainterDBConfig `yaml:"FancyPainterDBConfig"`
 }
 
 // gSystemConfig 系统配置
@@ -66,4 +74,11 @@ func GetServerPort() int32 {
 		return gSystemConfig.ServerPort
 	}
 	return 510010
+}
+
+func GetFancyPainterDBConfig() FancyPainterDBConfig {
+	if gSystemConfig != nil {
+		return gSystemConfig.FancyPainterDBConfig
+	}
+	return FancyPainterDBConfig{}
 }

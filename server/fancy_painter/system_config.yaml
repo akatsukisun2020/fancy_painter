@@ -1,5 +1,11 @@
-AccessKeyID: bb            # 腾讯云的访问key
-AccessKeySecret: aa  # 腾讯云的访问秘钥
+AccessKeyID: TODO            # 腾讯云的访问key
+AccessKeySecret: TODO  # 腾讯云的访问秘钥
 
 ServerIP: 9.134.70.164 # 服务IP
 ServerPort: 50051    # 服务端口
+
+FancyPainterDBConfig:
+  Dsn: TODO
+  MaxIdleConns: 10
+  MaxOpenConns: 200
+  MaxLifetime: 180   # 3 min

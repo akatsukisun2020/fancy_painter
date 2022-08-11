@@ -51,10 +51,11 @@ func GetMobile(accessKeyId, accessKeySecret *string, accessToken *string) (_mobi
 		}()
 		// 复制代码运行请自行打印 API 的返回值
 
-		resp, _err := client.GetMobileWithOptions(getMobileRequest, runtime)
-		if _err != nil || *resp.Body.Code != "OK" {
-			log.Printf("GetMobileWithOptions error, resp:%v, _err:%v", resp, _err)
-			return _err
+		resp, _errTmp := client.GetMobileWithOptions(getMobileRequest, runtime)
+		if _errTmp != nil || *resp.Body.Code != "OK" {
+			log.Printf("GetMobileWithOptions error, resp:%v, _err:%v", resp, _errTmp)
+			_err = _errTmp
+			return _errTmp
 		}
 		_mobile = *resp.Body.GetMobileResultDTO.Mobile
 		log.Printf("GetMobileWithOptions resp:%v", resp)

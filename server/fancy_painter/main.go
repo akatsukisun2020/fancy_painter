@@ -10,6 +10,7 @@ import (
 	"fancy_painter/proto/fancy_painter"
 
 	"fancy_painter/server/fancy_painter/config"
+	"fancy_painter/server/fancy_painter/dao"
 
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"google.golang.org/grpc"
@@ -48,6 +49,11 @@ func main() {
 	fancy_painter.RegisterFancyPainterServer(s, &FancyPainterService{})
 
 	config.InitSystemConfig() // 初始化服务配置
+
+	err := dao.InitFancyPainterDB()
+	if err != nil {
+		log.Fatalf("failed to InitFancyPainterDB:%v", err)
+	}
 
 	// 1. 启动grpc服务
 	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", config.GetServerPort()))
