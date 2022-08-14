@@ -1,8 +1,9 @@
 AccessKeyID: TODO            # 腾讯云的访问key
 AccessKeySecret: TODO  # 腾讯云的访问秘钥
 
-ServerIP: 9.134.70.164 # 服务IP
-ServerPort: 50051    # 服务端口
+# ServerIP: 9.134.70.164 # 服务IP
+ServerIP: localhost # 服务IP
+ServerPort: 50059    # 服务端口
 
 FancyPainterDBConfig:
   Dsn: TODO

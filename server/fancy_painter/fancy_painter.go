@@ -18,3 +18,7 @@ func (s *FancyPainterService) GetUser(ctx context.Context, req *fancy_painter.Us
 func (s *FancyPainterService) UserLogin(ctx context.Context, req *fancy_painter.UserLoginReq) (*fancy_painter.UserLoginRsp, error) {
 	return service.UserLogin(ctx, req)
 }
+
+func (s *FancyPainterService) Helloworld(ctx context.Context, req *fancy_painter.HelloworldReq) (*fancy_painter.HelloworldRsp, error) {
+	return service.Helloworld(ctx, req)
+}

@@ -26,6 +26,8 @@ type FancyPainterClient interface {
 	GetUser(ctx context.Context, in *UserReq, opts ...grpc.CallOption) (*UserRsp, error)
 	// 用户登录接口
 	UserLogin(ctx context.Context, in *UserLoginReq, opts ...grpc.CallOption) (*UserLoginRsp, error)
+	// helloworld接口
+	Helloworld(ctx context.Context, in *HelloworldReq, opts ...grpc.CallOption) (*HelloworldRsp, error)
 }
 
 type fancyPainterClient struct {
@@ -54,6 +56,15 @@ func (c *fancyPainterClient) UserLogin(ctx context.Context, in *UserLoginReq, op
 	return out, nil
 }
 
+func (c *fancyPainterClient) Helloworld(ctx context.Context, in *HelloworldReq, opts ...grpc.CallOption) (*HelloworldRsp, error) {
+	out := new(HelloworldRsp)
+	err := c.cc.Invoke(ctx, "/xgrpcd.FancyPainter/Helloworld", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // FancyPainterServer is the server API for FancyPainter service.
 // All implementations must embed UnimplementedFancyPainterServer
 // for forward compatibility
@@ -62,6 +73,8 @@ type FancyPainterServer interface {
 	GetUser(context.Context, *UserReq) (*UserRsp, error)
 	// 用户登录接口
 	UserLogin(context.Context, *UserLoginReq) (*UserLoginRsp, error)
+	// helloworld接口
+	Helloworld(context.Context, *HelloworldReq) (*HelloworldRsp, error)
 	mustEmbedUnimplementedFancyPainterServer()
 }
 
@@ -74,6 +87,9 @@ func (UnimplementedFancyPainterServer) GetUser(context.Context, *UserReq) (*User
 }
 func (UnimplementedFancyPainterServer) UserLogin(context.Context, *UserLoginReq) (*UserLoginRsp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UserLogin not implemented")
+}
+func (UnimplementedFancyPainterServer) Helloworld(context.Context, *HelloworldReq) (*HelloworldRsp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Helloworld not implemented")
 }
 func (UnimplementedFancyPainterServer) mustEmbedUnimplementedFancyPainterServer() {}
 
@@ -124,6 +140,24 @@ func _FancyPainter_UserLogin_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _FancyPainter_Helloworld_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HelloworldReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FancyPainterServer).Helloworld(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/xgrpcd.FancyPainter/Helloworld",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FancyPainterServer).Helloworld(ctx, req.(*HelloworldReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // FancyPainter_ServiceDesc is the grpc.ServiceDesc for FancyPainter service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -138,6 +172,10 @@ var FancyPainter_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UserLogin",
 			Handler:    _FancyPainter_UserLogin_Handler,
+		},
+		{
+			MethodName: "Helloworld",
+			Handler:    _FancyPainter_Helloworld_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

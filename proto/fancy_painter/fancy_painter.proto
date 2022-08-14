@@ -31,6 +31,16 @@ message UserRsp {
 	string name = 1;
 }
 
+//请求
+message HelloworldReq {
+	string name = 1;
+}
+
+//响应
+message HelloworldRsp {
+	string msg = 1;
+}
+
 //服务
 service FancyPainter {
 	// 测试接口
@@ -45,6 +55,15 @@ service FancyPainter {
 	rpc UserLogin(UserLoginReq) returns (UserLoginRsp){
 		option (google.api.http) = {        // 声明http的定义方式！！
 			post: "/fancy_painter/user_login"
+			body: "*"                     // 要传递数据过来，只能使用post方法！！
+		};
+	}
+
+
+	// helloworld接口
+	rpc Helloworld(HelloworldReq) returns (HelloworldRsp){
+		option (google.api.http) = {        // 声明http的定义方式！！
+			post: "/fancy_painter/hello_world"
 			body: "*"                     // 要传递数据过来，只能使用post方法！！
 		};
 	}
