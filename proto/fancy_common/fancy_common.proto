@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package fancycommon;
+
+option go_package="github.com/akatsukisun2020/fancy_painter/proto/fancy_common;fancycommon";
+
+// 关于公共proto文件如何引入的问题，可以参考： https://blog.csdn.net/Canon_in_D_Major/article/details/108149162
+
+
+// 智能画图任务 zset结构： key: SmartDrawImgTask score: 毫秒时间戳
+message SmartDrawImgTask {
+	string task_id = 1;        // 任务id， ${phone_number}_${毫秒时间戳}
+	string text_desc  = 2;     // 描述
+	string artist = 3;         // 艺术家
+	string target_style = 4;   // 目标分割
+	int64 img_width = 5;       // 宽
+	int64 img_height = 7;      // 高
+}
+
+// 用户生成的图片记录
+message UserImgRecord {
+    SmartDrawImgTask img_task = 1; // 任务信息
+    string img_url = 2;            // 生成的图片信息
+    int64 time = 3;                // 时间
+}
+
+// 用户图片资产 kv结构: key: UserAssets_${手机号}
+message UserAssets {
+	string phone_number = 1;            // 手机号
+    repeated UserImgRecord records = 2; // 任务记录列表，按照时间戳排序
+}

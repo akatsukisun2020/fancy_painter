@@ -2,12 +2,13 @@ package service
 
 import (
 	"context"
-	"fancy_painter/proto/fancy_painter"
-	"fancy_painter/server/fancy_painter/aliyun"
-	"fancy_painter/server/fancy_painter/config"
-	"fancy_painter/server/fancy_painter/dao"
 	"fmt"
 	"log"
+
+	"github.com/akatsukisun2020/fancy_painter/proto/fancy_painter"
+	"github.com/akatsukisun2020/fancy_painter/server/fancy_painter/aliyun"
+	"github.com/akatsukisun2020/fancy_painter/server/fancy_painter/config"
+	"github.com/akatsukisun2020/fancy_painter/server/fancy_painter/dao"
 
 	"github.com/google/uuid"
 )

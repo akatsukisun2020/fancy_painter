@@ -101,8 +101,8 @@ func local_request_FancyPainter_UserLogin_0(ctx context.Context, marshaler runti
 
 }
 
-func request_FancyPainter_Helloworld_0(ctx context.Context, marshaler runtime.Marshaler, client FancyPainterClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq HelloworldReq
+func request_FancyPainter_SmartDrawImg_0(ctx context.Context, marshaler runtime.Marshaler, client FancyPainterClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq SmartDrawImgReq
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -113,13 +113,13 @@ func request_FancyPainter_Helloworld_0(ctx context.Context, marshaler runtime.Ma
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.Helloworld(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.SmartDrawImg(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_FancyPainter_Helloworld_0(ctx context.Context, marshaler runtime.Marshaler, server FancyPainterServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq HelloworldReq
+func local_request_FancyPainter_SmartDrawImg_0(ctx context.Context, marshaler runtime.Marshaler, server FancyPainterServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq SmartDrawImgReq
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -130,7 +130,7 @@ func local_request_FancyPainter_Helloworld_0(ctx context.Context, marshaler runt
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.Helloworld(ctx, &protoReq)
+	msg, err := server.SmartDrawImg(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -189,19 +189,19 @@ func RegisterFancyPainterHandlerServer(ctx context.Context, mux *runtime.ServeMu
 
 	})
 
-	mux.Handle("POST", pattern_FancyPainter_Helloworld_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_FancyPainter_SmartDrawImg_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/xgrpcd.FancyPainter/Helloworld", runtime.WithHTTPPathPattern("/fancy_painter/hello_world"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/xgrpcd.FancyPainter/SmartDrawImg", runtime.WithHTTPPathPattern("/fancy_painter/smart_draw_img"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_FancyPainter_Helloworld_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_FancyPainter_SmartDrawImg_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -209,7 +209,7 @@ func RegisterFancyPainterHandlerServer(ctx context.Context, mux *runtime.ServeMu
 			return
 		}
 
-		forward_FancyPainter_Helloworld_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_FancyPainter_SmartDrawImg_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -296,24 +296,24 @@ func RegisterFancyPainterHandlerClient(ctx context.Context, mux *runtime.ServeMu
 
 	})
 
-	mux.Handle("POST", pattern_FancyPainter_Helloworld_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_FancyPainter_SmartDrawImg_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/xgrpcd.FancyPainter/Helloworld", runtime.WithHTTPPathPattern("/fancy_painter/hello_world"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/xgrpcd.FancyPainter/SmartDrawImg", runtime.WithHTTPPathPattern("/fancy_painter/smart_draw_img"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_FancyPainter_Helloworld_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_FancyPainter_SmartDrawImg_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_FancyPainter_Helloworld_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_FancyPainter_SmartDrawImg_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -325,7 +325,7 @@ var (
 
 	pattern_FancyPainter_UserLogin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"fancy_painter", "user_login"}, ""))
 
-	pattern_FancyPainter_Helloworld_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"fancy_painter", "hello_world"}, ""))
+	pattern_FancyPainter_SmartDrawImg_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"fancy_painter", "smart_draw_img"}, ""))
 )
 
 var (
@@ -333,5 +333,5 @@ var (
 
 	forward_FancyPainter_UserLogin_0 = runtime.ForwardResponseMessage
 
-	forward_FancyPainter_Helloworld_0 = runtime.ForwardResponseMessage
+	forward_FancyPainter_SmartDrawImg_0 = runtime.ForwardResponseMessage
 )

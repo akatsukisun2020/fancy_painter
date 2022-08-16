@@ -1,8 +1,9 @@
-module fancy_painter
+module github.com/akatsukisun2020/fancy_painter
 
 go 1.16
 
 require (
+	github.com/akatsukisun2020/fancy_painter/proto/fancy_common v0.0.0-00010101000000-000000000000 // indirect
 	github.com/alibabacloud-go/darabonba-openapi v0.1.18
 	github.com/alibabacloud-go/dypnsapi-20170525 v1.0.6
 	github.com/alibabacloud-go/tea v1.1.19
@@ -19,3 +20,5 @@ require (
 	google.golang.org/protobuf v1.28.0
 	gopkg.in/yaml.v3 v3.0.1
 )
+
+replace github.com/akatsukisun2020/fancy_painter/proto/fancy_common => ./proto/fancy_common

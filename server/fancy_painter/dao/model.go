@@ -4,8 +4,9 @@ import (
 	"time"
 
 	"database/sql"
-	"fancy_painter/common/mysql"
-	"fancy_painter/server/fancy_painter/config"
+
+	"github.com/akatsukisun2020/fancy_painter/common/mysql"
+	"github.com/akatsukisun2020/fancy_painter/server/fancy_painter/config"
 )
 
 // Users 用户资料

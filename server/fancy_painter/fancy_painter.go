@@ -3,8 +3,8 @@ package main
 import (
 	"context"
 
-	"fancy_painter/proto/fancy_painter"
-	"fancy_painter/server/fancy_painter/service"
+	"github.com/akatsukisun2020/fancy_painter/proto/fancy_painter"
+	"github.com/akatsukisun2020/fancy_painter/server/fancy_painter/service"
 )
 
 type FancyPainterService struct {
@@ -19,6 +19,6 @@ func (s *FancyPainterService) UserLogin(ctx context.Context, req *fancy_painter.
 	return service.UserLogin(ctx, req)
 }
 
-func (s *FancyPainterService) Helloworld(ctx context.Context, req *fancy_painter.HelloworldReq) (*fancy_painter.HelloworldRsp, error) {
-	return service.Helloworld(ctx, req)
+func (s *FancyPainterService) SmartDrawImg(ctx context.Context, req *fancy_painter.SmartDrawImgReq) (*fancy_painter.SmartDrawImgRsp, error) {
+	return service.SmartDrawImg(ctx, req)
 }

@@ -4,7 +4,8 @@ package xgrpcd;
 
 option go_package="fancy_painter/";
 
-import "google/api/annotations.proto"; // 支持http的时候，需要增加注解的功能，需要这个东西来进行解析
+import "google/api/annotations.proto";            // 支持http的时候，需要增加注解的功能，需要这个东西来进行解析
+import "fancy_common/fancy_common.proto";          // 引用公共pb文件
 
 message UserLoginReq {
 	string token = 1;        // 支持的token
@@ -31,15 +32,20 @@ message UserRsp {
 	string name = 1;
 }
 
-//请求
-message HelloworldReq {
-	string name = 1;
+
+//绘制图片请求
+message SmartDrawImgReq {
+	string phone_number = 1;                            // 电话号码
+	string user_id = 2;                                 // 内部用户id，类似秘钥
+	fancycommon.SmartDrawImgTask smart_draw_img_task = 3;           // 智能画图任务
 }
 
-//响应
-message HelloworldRsp {
-	string msg = 1;
+//绘制图片响应
+message SmartDrawImgRsp {
+	int32 ret_code = 1;
+	string ret_msg = 2;
 }
+
 
 //服务
 service FancyPainter {
@@ -60,10 +66,10 @@ service FancyPainter {
 	}
 
 
-	// helloworld接口
-	rpc Helloworld(HelloworldReq) returns (HelloworldRsp){
+	// SmartDrawImg 智能图片生成接口
+	rpc SmartDrawImg(SmartDrawImgReq) returns (SmartDrawImgRsp){
 		option (google.api.http) = {        // 声明http的定义方式！！
-			post: "/fancy_painter/hello_world"
+			post: "/fancy_painter/smart_draw_img"
 			body: "*"                     // 要传递数据过来，只能使用post方法！！
 		};
 	}
