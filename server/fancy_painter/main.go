@@ -7,9 +7,9 @@ import (
 	"net"
 	"net/http"
 
-	"github.com/akatsukisun2020/fancy_painter/proto/fancy_painter"
+	"github.com/akatsukisun2020/fancy_painter/mainline/proto/fancy_painter"
 
-	"github.com/akatsukisun2020/fancy_painter/server/fancy_painter/config"
+	"github.com/akatsukisun2020/fancy_painter/mainline/server/fancy_painter/config"
 
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"google.golang.org/grpc"

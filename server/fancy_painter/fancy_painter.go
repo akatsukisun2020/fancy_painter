@@ -3,8 +3,8 @@ package main
 import (
 	"context"
 
-	"github.com/akatsukisun2020/fancy_painter/proto/fancy_painter"
-	"github.com/akatsukisun2020/fancy_painter/server/fancy_painter/service"
+	"github.com/akatsukisun2020/fancy_painter/mainline/proto/fancy_painter"
+	"github.com/akatsukisun2020/fancy_painter/mainline/server/fancy_painter/service"
 )
 
 type FancyPainterService struct {

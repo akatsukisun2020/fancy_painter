@@ -1,4 +1,4 @@
-module github.com/akatsukisun2020/fancy_painter
+module github.com/akatsukisun2020/fancy_painter/mainline
 
 go 1.16
 

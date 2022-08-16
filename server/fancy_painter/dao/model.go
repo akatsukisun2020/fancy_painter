@@ -5,8 +5,8 @@ import (
 
 	"database/sql"
 
-	"github.com/akatsukisun2020/fancy_painter/common/mysql"
-	"github.com/akatsukisun2020/fancy_painter/server/fancy_painter/config"
+	"github.com/akatsukisun2020/fancy_painter/mainline/common/mysql"
+	"github.com/akatsukisun2020/fancy_painter/mainline/server/fancy_painter/config"
 )
 
 // Users 用户资料

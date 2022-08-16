@@ -2,7 +2,10 @@ syntax = "proto3";
 
 package fancycommon;
 
-option go_package="github.com/akatsukisun2020/fancy_painter/proto/fancy_common;fancycommon";
+option go_package="github.com/akatsukisun2020/fancy_painter/proto/fancy_common"; // 这个是给外部文件生成的go文件引用的路径
+
+// TODO: 需要解决的问题是：这个工具生成的文件是github.com等层次的，需要手动拷贝 ==> 需要用脚本生成本目录层次的文件，而不是递归的!! [TODO]
+// TODO: 搞清楚package/go_package等的区别！！
 
 // 关于公共proto文件如何引入的问题，可以参考： https://blog.csdn.net/Canon_in_D_Major/article/details/108149162
 
